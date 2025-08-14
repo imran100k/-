@@ -1,53 +1,156 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Neon Mini Max</title>
+<title>Neon Pulse — Telegram Mini App</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="https://ad.gigapub.tech/script?id=1292"></script>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
   :root {
-    --bg: #0a0a0a;
-    --card-bg: rgba(10,10,10,0.8);
-    --text: #ffffff;
-    --accent1: #00ffff;
+    --bg-dark: #0c0c0c;
+    --card-bg: rgba(255,255,255,0.05);
+    --accent: #00ffff;
     --accent2: #ff00ff;
-    --glow1: #00ffff;
-    --glow2: #ff00ff;
-  }{box-sizing:border-box;} html, body { margin:0; height:100%; font-family:'Segoe UI', sans-serif; background: radial-gradient(circle at 20% 20%, #0a0a0a, #1a1a1a); display:grid; place-items:center; }
+    --text: #fff;
+    --muted: rgba(255,255,255,0.5);
+    --glow: #00ffff;
+  }
 
+  * {box-sizing: border-box;}
+  html, body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at center, #0c0c0c, #1a1a1a);
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+  }
 
-.card { background: var(--card-bg); border-radius: 24px; padding: 30px; width:min(600px, 90vw); text-align:center; box-shadow: 0 0 20px var(--glow1), 0 0 40px var(--glow2); animation: neonPulse 3s infinite alternate; }
+  /* Floating particles */
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: float 6s linear infinite;
+    opacity: 0.7;
+  }
+  @keyframes float {
+    0% {transform: translateY(0) translateX(0);}
+    50% {transform: translateY(-80px) translateX(50px);}
+    100% {transform: translateY(0) translateX(0);}
+  }
 
-@keyframes neonPulse { 0% {box-shadow:0 0 20px var(--glow1), 0 0 40px var(--glow2);} 100% {box-shadow:0 0 40px var(--glow1), 0 0 80px var(--glow2);} }
+  .card {
+    backdrop-filter: blur(12px);
+    background: var(--card-bg);
+    border: 2px solid var(--accent);
+    border-radius: 24px;
+    padding: 40px;
+    width: min(800px,90vw);
+    text-align: center;
+    box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent2);
+    animation: neonPulse 2s infinite alternate;
+  }
 
-h1 { font-size:2rem; margin:0 0 16px; color: var(--accent1); text-shadow:0 0 8px var(--glow1), 0 0 20px var(--glow2); }
+  @keyframes neonPulse {
+    from {box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent2);}
+    to {box-shadow: 0 0 40px var(--accent), 0 0 80px var(--accent2);}
+  }
 
-p {margin:0 0 20px; color:#aaa;}
+  h1 {
+    color: var(--text);
+    font-size: 2.2rem;
+    text-shadow: 0 0 8px var(--accent), 0 0 15px var(--accent2);
+    margin: 0 0 12px;
+  }
 
-.chips { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; }
+  p {
+    color: var(--muted);
+    margin: 0 0 20px;
+  }
 
-.chip { padding:8px 16px; border-radius:50px; background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.2); color: var(--text); font-size:13px; text-shadow:0 0 5px var(--accent1); }
+  .chips {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  .chip {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--accent);
+    color: var(--text);
+    text-shadow: 0 0 5px var(--accent);
+    background: rgba(0,255,255,0.05);
+    font-size: 13px;
+  }
 
-.row {display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:20px;}
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
 
-button { border:none; border-radius:16px; padding:14px 24px; font-size:15px; font-weight:700; cursor:pointer; background: linear-gradient(135deg,var(--accent1),var(--accent2)); color:#000; box-shadow:0 0 10px var(--glow1),0 0 20px var(--glow2); transition: all 0.3s ease; }
+  button {
+    border: none;
+    border-radius: 16px;
+    padding: 14px 22px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #0c0c0c;
+    box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent2);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+  }
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent2);
+  }
 
-button:hover { transform: translateY(-3px); box-shadow:0 0 20px var(--glow1),0 0 40px var(--glow2); }
+  .ad-slot {
+    margin-top: 20px;
+    padding: 16px;
+    border: 2px dashed var(--accent);
+    border-radius: 16px;
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-weight: 600;
+    box-shadow: 0 0 15px var(--accent), 0 0 30px var(--accent2);
+  }
 
-.secondary { background: rgba(255,255,255,0.05); color: var(--text); box-shadow:0 0 8px var(--glow1); }
-
-.secondary:hover { background: rgba(255,255,255,0.1); box-shadow:0 0 20px var(--glow2); }
-
-.ad-slot { margin-top:20px; min-height:130px; border-radius:16px; border:2px dashed rgba(255,255,255,0.3); display:flex; align-items:center; justify-content:center; color:#aaa; font-weight:600; text-shadow:0 0 10px var(--glow1); box-shadow:0 0 15px var(--glow1),0 0 30px var(--glow2); }
-
-.footer {margin-top:16px; font-size:13px; color:#888; text-align:center;} </style>
-
+  .footer {
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+  }
+</style>
 </head>
 <body>
+
+<!-- Particles -->
+<div class="particle" style="top:20%; left:15%;"></div>
+<div class="particle" style="top:50%; left:80%; animation-duration:8s;"></div>
+<div class="particle" style="top:70%; left:40%; animation-duration:5s;"></div>
+<div class="particle" style="top:30%; left:60%; animation-duration:7s;"></div>
+
 <div class="card">
-  <h1>🌟 Neon Mini Max</h1>
-  <p>Telegram Mini App • Glowing UI • Giga.pub integrated</p>
+  <h1>🌌 Neon Pulse</h1>
+  <p>Telegram Mini App • GitHub + Vercel • Giga.pub ads</p>
   <div class="chips">
     <span class="chip" id="chipUser">@user</span>
     <span class="chip" id="chipTheme">theme: —</span>
@@ -56,33 +159,58 @@ button:hover { transform: translateY(-3px); box-shadow:0 0 20px var(--glow1),0 0
   </div>
   <div class="row">
     <button id="btnHello">Say Hello</button>
-    <button id="btnHaptic" class="secondary">Haptic</button>
-    <button id="btnQR" class="secondary">Scan QR</button>
-    <button id="btnShare" class="secondary">Share</button>
-    <button id="btnAd" class="secondary">Show Ad</button>
+    <button id="btnHaptic">Haptic</button>
+    <button id="btnQR">Scan QR</button>
+    <button id="btnShare">Share</button>
+    <button id="btnAd">Show Ad</button>
   </div>
   <div id="adSlot" class="ad-slot">Banner Ad will load automatically.</div>
   <div class="footer" id="dbg"></div>
-  <div class="footer">Open inside Telegram bot via WebApp button. Host on Vercel.</div>
+  <div class="footer">Tip: Open inside Telegram. Host on Vercel (HTTPS).</div>
 </div>
+
 <script>
   const tg = window.Telegram?.WebApp;
-  function ensureTelegramContext(){
-    const isTG = !!tg;
-    if(!isTG){document.getElementById('dbg').innerHTML='<span style="color:#f55;">⚠️ Open inside Telegram. Some features disabled.</span>'}
-    return isTG;
-  }if(ensureTelegramContext() && tg){ tg.ready(); tg.expand(); const u=tg.initDataUnsafe?.user; if(u) document.getElementById('chipUser').textContent='@'+(u.username||u.first_name||'user'); document.getElementById('chipTheme').textContent='theme: '+tg.colorScheme; document.getElementById('chipPlatform').textContent='platform: '+tg.platform; document.getElementById('chipVersion').textContent='tg api: '+(tg.version||'—');
 
-document.getElementById('btnHello').onclick=()=>tg.showAlert('Hello from Neon Mini Max!');
-document.getElementById('btnHaptic').onclick=()=>tg.HapticFeedback?.impactOccurred('light');
-document.getElementById('btnQR').onclick=()=>tg.showScanQrPopup({text:'Scan a QR code'},text=>tg.showAlert(text||'No QR data'));
-document.getElementById('btnShare').onclick=()=>tg.shareURL?.(window.location.href);
+  function ensureTelegram() {
+    if(!(window.Telegram && window.Telegram.WebApp)){
+      document.getElementById('dbg').innerHTML = '⚠️ Open inside Telegram. Some features disabled.';
+      return false;
+    }
+    return true;
+  }
 
-}
+  if(ensureTelegram() && tg){
+    tg.ready(); tg.expand();
+    const u = tg.initDataUnsafe?.user;
+    if(u) document.getElementById('chipUser').textContent='@'+(u.username||u.first_name||'user');
+    document.getElementById('chipTheme').textContent='theme: '+tg.colorScheme;
+    document.getElementById('chipPlatform').textContent='platform: '+tg.platform;
+    document.getElementById('chipVersion').textContent='tg api: '+(tg.version||'—');
 
-document.getElementById('btnAd').onclick=async()=>{ try{ if(window.gigaPub){ await gigaPub.loadInterstitial(); gigaPub.showInterstitial(); } else tg?.showAlert('Ad script not loaded yet'); }catch(e){tg?.showAlert('Ad failed to load');} };
+    document.getElementById('btnHello').onclick=()=>tg.showAlert('Hello from Neon Pulse!');
+    document.getElementById('btnHaptic').onclick=()=>tg.HapticFeedback?.impactOccurred('light');
+    document.getElementById('btnQR').onclick=()=>tg.showScanQrPopup({text:'Scan a QR code'}, text=>tg.showAlert(text||'No QR data'));
+    document.getElementById('btnShare').onclick=()=>{tg.shareURL ? tg.shareURL(window.location.href) : tg.showPopup({title:'Share',message:window.location.href,buttons:[{type:'close'}]})};
+  }
 
-function showDummyBanner(){ const adSlot=document.getElementById('adSlot'); if(adSlot){ adSlot.innerHTML='<div style="padding:12px;background:rgba(255,255,255,0.1);border-radius:12px;color:#fff;box-shadow:0 0 10px var(--glow1),0 0 20px var(--glow2);">🎯 Placeholder ad while review is pending.</div>'; } } setTimeout(()=>{if(document.getElementById('adSlot')?.children.length===0) showDummyBanner();},2000); </script>
+  document.getElementById('btnAd').onclick = async()=>{
+    try{
+      if(window.gigaPub){ await gigaPub.loadInterstitial(); gigaPub.showInterstitial(); }
+      else tg?.showAlert('Ad script not loaded yet');
+    }catch(e){tg?.showAlert('Ad failed to load');}
+  };
+
+  // Dummy banner during review
+  function showDummyBanner(){
+    const adSlot=document.getElementById('adSlot');
+    if(adSlot){
+      adSlot.innerHTML='<div style="padding:12px;background:rgba(0,255,255,0.1);border-radius:12px;color:#0ff;box-shadow:0 0 15px #0ff,0 0 30px #f0f">'+
+      '🎯 Placeholder Ad (Review Pending)</div>';
+    }
+  }
+  setTimeout(()=>{if(document.getElementById('adSlot') && document.getElementById('adSlot').children.length===0) showDummyBanner();},2000);
+</script>
 
 </body>
 </html>
