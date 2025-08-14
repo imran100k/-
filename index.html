@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Neon Mini Max</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="https://ad.gigapub.tech/script?id=1292"></script>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --card-bg: rgba(10,10,10,0.8);
+    --text: #ffffff;
+    --accent1: #00ffff;
+    --accent2: #ff00ff;
+    --glow1: #00ffff;
+    --glow2: #ff00ff;
+  }{box-sizing:border-box;} html, body { margin:0; height:100%; font-family:'Segoe UI', sans-serif; background: radial-gradient(circle at 20% 20%, #0a0a0a, #1a1a1a); display:grid; place-items:center; }
+
+
+.card { background: var(--card-bg); border-radius: 24px; padding: 30px; width:min(600px, 90vw); text-align:center; box-shadow: 0 0 20px var(--glow1), 0 0 40px var(--glow2); animation: neonPulse 3s infinite alternate; }
+
+@keyframes neonPulse { 0% {box-shadow:0 0 20px var(--glow1), 0 0 40px var(--glow2);} 100% {box-shadow:0 0 40px var(--glow1), 0 0 80px var(--glow2);} }
+
+h1 { font-size:2rem; margin:0 0 16px; color: var(--accent1); text-shadow:0 0 8px var(--glow1), 0 0 20px var(--glow2); }
+
+p {margin:0 0 20px; color:#aaa;}
+
+.chips { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; }
+
+.chip { padding:8px 16px; border-radius:50px; background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.2); color: var(--text); font-size:13px; text-shadow:0 0 5px var(--accent1); }
+
+.row {display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:20px;}
+
+button { border:none; border-radius:16px; padding:14px 24px; font-size:15px; font-weight:700; cursor:pointer; background: linear-gradient(135deg,var(--accent1),var(--accent2)); color:#000; box-shadow:0 0 10px var(--glow1),0 0 20px var(--glow2); transition: all 0.3s ease; }
+
+button:hover { transform: translateY(-3px); box-shadow:0 0 20px var(--glow1),0 0 40px var(--glow2); }
+
+.secondary { background: rgba(255,255,255,0.05); color: var(--text); box-shadow:0 0 8px var(--glow1); }
+
+.secondary:hover { background: rgba(255,255,255,0.1); box-shadow:0 0 20px var(--glow2); }
+
+.ad-slot { margin-top:20px; min-height:130px; border-radius:16px; border:2px dashed rgba(255,255,255,0.3); display:flex; align-items:center; justify-content:center; color:#aaa; font-weight:600; text-shadow:0 0 10px var(--glow1); box-shadow:0 0 15px var(--glow1),0 0 30px var(--glow2); }
+
+.footer {margin-top:16px; font-size:13px; color:#888; text-align:center;} </style>
+
+</head>
+<body>
+<div class="card">
+  <h1>🌟 Neon Mini Max</h1>
+  <p>Telegram Mini App • Glowing UI • Giga.pub integrated</p>
+  <div class="chips">
+    <span class="chip" id="chipUser">@user</span>
+    <span class="chip" id="chipTheme">theme: —</span>
+    <span class="chip" id="chipPlatform">platform: —</span>
+    <span class="chip" id="chipVersion">tg api: —</span>
+  </div>
+  <div class="row">
+    <button id="btnHello">Say Hello</button>
+    <button id="btnHaptic" class="secondary">Haptic</button>
+    <button id="btnQR" class="secondary">Scan QR</button>
+    <button id="btnShare" class="secondary">Share</button>
+    <button id="btnAd" class="secondary">Show Ad</button>
+  </div>
+  <div id="adSlot" class="ad-slot">Banner Ad will load automatically.</div>
+  <div class="footer" id="dbg"></div>
+  <div class="footer">Open inside Telegram bot via WebApp button. Host on Vercel.</div>
+</div>
+<script>
+  const tg = window.Telegram?.WebApp;
+  function ensureTelegramContext(){
+    const isTG = !!tg;
+    if(!isTG){document.getElementById('dbg').innerHTML='<span style="color:#f55;">⚠️ Open inside Telegram. Some features disabled.</span>'}
+    return isTG;
+  }if(ensureTelegramContext() && tg){ tg.ready(); tg.expand(); const u=tg.initDataUnsafe?.user; if(u) document.getElementById('chipUser').textContent='@'+(u.username||u.first_name||'user'); document.getElementById('chipTheme').textContent='theme: '+tg.colorScheme; document.getElementById('chipPlatform').textContent='platform: '+tg.platform; document.getElementById('chipVersion').textContent='tg api: '+(tg.version||'—');
+
+document.getElementById('btnHello').onclick=()=>tg.showAlert('Hello from Neon Mini Max!');
+document.getElementById('btnHaptic').onclick=()=>tg.HapticFeedback?.impactOccurred('light');
+document.getElementById('btnQR').onclick=()=>tg.showScanQrPopup({text:'Scan a QR code'},text=>tg.showAlert(text||'No QR data'));
+document.getElementById('btnShare').onclick=()=>tg.shareURL?.(window.location.href);
+
+}
+
+document.getElementById('btnAd').onclick=async()=>{ try{ if(window.gigaPub){ await gigaPub.loadInterstitial(); gigaPub.showInterstitial(); } else tg?.showAlert('Ad script not loaded yet'); }catch(e){tg?.showAlert('Ad failed to load');} };
+
+function showDummyBanner(){ const adSlot=document.getElementById('adSlot'); if(adSlot){ adSlot.innerHTML='<div style="padding:12px;background:rgba(255,255,255,0.1);border-radius:12px;color:#fff;box-shadow:0 0 10px var(--glow1),0 0 20px var(--glow2);">🎯 Placeholder ad while review is pending.</div>'; } } setTimeout(()=>{if(document.getElementById('adSlot')?.children.length===0) showDummyBanner();},2000); </script>
+
+</body>
+</html>
