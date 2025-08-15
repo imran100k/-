@@ -3,123 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Giga Pub — Premium UI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
+  <title>Glow Cash — Telegram Mini App</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="https://ad.gigapub.tech/script?id=1292"></script>
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Noto Sans Bengali', sans-serif;
+    :root {
+      --bg-dark: #1a1a1a;
+      --bg-light: #2d2d2d;
+      --card: #242424;
+      --text: #f1f5f9;
+      --muted: #b0b0b0;
+      --accent: #00e0ff;
+      --accent-2: #ff4cff;
     }
-    body {
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
       margin: 0;
-      background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+      display: grid;
+      place-items: center;
+      padding: 20px;
     }
     .card {
-      background: #1e1e2e;
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(0, 255, 200, 0.3);
-      max-width: 400px;
-      width: 100%;
-    }
-    .title {
+      width: min(400px, 95vw);
+      background: var(--card);
+      border-radius: 20px;
+      padding: 24px;
       text-align: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #00ffd0;
-      margin-bottom: 10px;
+      box-shadow: 0 0 20px rgba(0, 224, 255, 0.5), 0 0 40px rgba(255, 76, 255, 0.3);
+      transition: box-shadow 0.3s ease;
     }
-    .subtitle {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #ccc;
-      margin-bottom: 20px;
+    .card:hover {
+      box-shadow: 0 0 30px rgba(0, 224, 255, 0.8), 0 0 60px rgba(255, 76, 255, 0.6);
     }
-    .balance-box {
-      background: #26263a;
-      border: 2px solid #00ffd0;
-      padding: 15px;
-      border-radius: 12px;
-      text-align: center;
-      margin-bottom: 15px;
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.8rem;
+      color: var(--accent);
+      text-shadow: 0 0 8px var(--accent), 0 0 15px var(--accent-2);
     }
-    .balance-box h2 {
-      margin: 5px 0;
-      font-size: 2rem;
-      color: #00ffd0;
-      text-shadow: 0 0 8px #00ffd0;
-    }
-    .stat {
-      background: #26263a;
-      padding: 12px;
-      border-radius: 10px;
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-    .stat span {
-      font-weight: bold;
-      color: #00ffd0;
+    p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 14px;
     }
     .btn {
       display: block;
       width: 100%;
       padding: 12px;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
+      margin: 8px 0;
+      font-size: 15px;
       font-weight: bold;
-      margin-top: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .btn-primary {
-      background: #00ffd0;
-      color: #000;
-      box-shadow: 0 0 15px #00ffd0;
-    }
-    .btn-primary:hover {
-      background: #00e6b8;
-    }
-    .btn-danger {
-      background: #ff4d4d;
       color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent-2);
+      transition: transform 0.2s ease;
     }
-    .btn-warning {
-      background: #ffcc00;
-      color: #000;
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+    .ad-slot {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-weight: 500;
+      box-shadow: 0 0 10px rgba(0,224,255,0.3), 0 0 20px rgba(255,76,255,0.2);
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <div class="title">🎯 Giga Pub</div>
-    <div class="subtitle">বিজ্ঞাপন দেখুন, অর্থ উপার্জন করুন</div>
-
-    <div class="balance-box">
-      <div>আপনার ব্যালেন্স</div>
-      <h2>৳0.04</h2>
-      <small>প্রতি বিজ্ঞাপনে আয়: ৳0.008</small>
-    </div>
-
-    <div class="stat">
-      <div>মোট বিজ্ঞাপন</div>
-      <span>5</span>
-    </div>
-    <div class="stat">
-      <div>মোট আয়</div>
-      <span>৳0.04</span>
-    </div>
-
-    <button class="btn btn-primary">▶ বিজ্ঞাপন দেখুন</button>
-    <button class="btn btn-danger">↻ রিসেট</button>
-    <button class="btn btn-warning">👤 ডেভেলপার</button>
+    <h1>💎 Glow Cash</h1>
+    <p>Telegram Mini App • GitHub + Vercel Ready • GigaPub Ads</p>
+    <button class="btn" id="btnHello">👋 হ্যালো বলুন</button>
+    <button class="btn" id="btnAd">▶ বিজ্ঞাপন দেখুন</button>
+    <div id="adSlot" class="ad-slot">Banner Ad will load automatically</div>
   </div>
+
+  <script>
+    function ensureTelegramContext() {
+      const isTG = !!(window.Telegram && window.Telegram.WebApp);
+      if(!isTG) console.warn("⚠️ Open inside Telegram");
+      return isTG;
+    }
+
+    const tg = window.Telegram?.WebApp;
+    if(ensureTelegramContext() && tg){
+      tg.ready(); tg.expand();
+      document.getElementById('btnHello').onclick = () => tg.showAlert('Glow Cash থেকে হ্যালো!');
+    } else {
+      document.getElementById('btnHello').onclick = () => alert('Glow Cash থেকে হ্যালো!');
+    }
+
+    document.getElementById('btnAd').onclick = async () => {
+      try {
+        if(window.gigaPub){
+          await gigaPub.loadInterstitial();
+          gigaPub.showInterstitial();
+        } else {
+          alert('Ad script not loaded yet');
+        }
+      } catch(e) {
+        alert('Ad failed to load');
+      }
+    };
+
+    function showDummyBanner(){
+      const adSlot=document.getElementById('adSlot');
+      if(adSlot){
+        adSlot.innerHTML='<div style="padding:12px;background:rgba(255,255,255,0.1);border-radius:12px;color:#fff;">🎯 Placeholder ad while review is pending.</div>';
+      }
+    }
+    setTimeout(() => {
+      if(document.getElementById('adSlot') && document.getElementById('adSlot').children.length===0) showDummyBanner();
+    }, 2000);
+  </script>
 </body>
 </html>
